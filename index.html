@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>김재현 | AI 프로젝트 소개</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <p class="label">김재현의 프로젝트 소개</p>
+
+    <h1>AI와 자동화 기술로<br>문제를 해결합니다.</h1>
+
+    <p>
+      새로운 기술을 학습하고 직접 결과물로 만드는 학생입니다.
+      VOICEGUIDE, MoodTender, Lease-Companion 프로젝트에 참여했습니다.
+    </p>
+
+    <a class="main-link" href="#projects">프로젝트 확인하기</a>
+  </header>
+
+  <main>
+    <section aria-labelledby="about-title">
+      <h2 id="about-title">나에 대한 소개</h2>
+
+      <p>
+        저는 AI와 자동화 기술에 관심이 있으며, 새로운 기술을 실제
+        결과물로 만드는 과정을 좋아합니다. 프로젝트를 진행하면서
+        팀원들과 함께 사용자의 문제를 해결하는 경험을 쌓았습니다.
+      </p>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">프로젝트 경험</h2>
+
+      <article class="project">
+        <h3>VOICEGUIDE</h3>
+
+        <p>
+          시각장애인이 주변의 사물과 장애물을 파악할 수 있도록 돕는
+          프로젝트입니다.
+        </p>
+
+        <button
+          type="button"
+          class="detail-button"
+          aria-expanded="false"
+          aria-controls="voiceguide-detail"
+        >
+          자세히 보기
+        </button>
+
+        <div id="voiceguide-detail" class="project-detail" hidden>
+          <h4>상황</h4>
+          <p>
+            시각장애인이 혼자 이동할 때 주변 사물과 장애물을 즉시
+            파악하기 어렵다는 문제를 해결하고자 했습니다.
+          </p>
+
+          <h4>행동</h4>
+          <p>
+            카메라 영상에서 YOLO 모델로 객체를 탐지하는 기능을 구현했습니다.
+            탐지된 객체의 위치에 바운딩 박스와 객체명을 표시했습니다.
+          </p>
+
+          <h4>결과</h4>
+          <p>
+            카메라 화면에서 주변 객체의 종류와 위치를 실시간으로
+            확인할 수 있는 객체 인식 기능을 완성했습니다.
+          </p>
+
+          <a
+            href="https://github.com/coding-jhj/VoiceGuide"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VOICEGUIDE 팀 저장소 보기
+          </a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>MoodTender</h3>
+
+        <p>
+          정서적으로 지친 사용자가 챗봇과 대화할 수 있도록 만든
+          대화형 서비스입니다.
+        </p>
+
+        <button
+          type="button"
+          class="detail-button"
+          aria-expanded="false"
+          aria-controls="moodtender-detail"
+        >
+          자세히 보기
+        </button>
+
+        <div id="moodtender-detail" class="project-detail" hidden>
+          <h4>상황</h4>
+          <p>
+            사용자가 부담 없이 자신의 이야기를 나눌 수 있는 대화형
+            서비스가 필요하다고 생각했습니다.
+          </p>
+
+          <h4>행동</h4>
+          <p>
+            백엔드와 LLM을 연결하고 프롬프트를 작성했습니다.
+            웹페이지와 앱 화면 디자인도 구현했습니다.
+          </p>
+
+          <h4>결과</h4>
+          <p>
+            서비스의 주요 기능과 화면을 완성했으며,
+            디지털 트레이닝 프로그램에서 2위를 기록했습니다.
+          </p>
+
+          <a
+            href="https://github.com/Seong-Su187/MoodTender"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MoodTender 팀 저장소 보기
+          </a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Lease-Companion</h3>
+
+        <p>
+          임대차 계약 경험이 부족한 사용자의 금전적 피해 예방을
+          돕는 프로젝트입니다.
+        </p>
+
+        <button
+          type="button"
+          class="detail-button"
+          aria-expanded="false"
+          aria-controls="lease-detail"
+        >
+          자세히 보기
+        </button>
+
+        <div id="lease-detail" class="project-detail" hidden>
+          <h4>상황</h4>
+          <p>
+            임대차 계약을 처음 진행하는 사용자는 확인해야 할 정보와
+            절차를 알기 어렵다는 문제를 해결하고자 했습니다.
+          </p>
+
+          <h4>행동</h4>
+          <p>
+            프론트엔드 개발과 휴먼 시뮬레이션 설계를 담당했습니다.
+            <!-- 이 부분에 실제로 구현한 화면이나 기능을 추가하세요. -->
+          </p>
+
+          <h4>결과</h4>
+          <p>
+            프로젝트의 완성도와 아이디어를 인정받아 해커톤 대회
+            본선에 진출했습니다.
+          </p>
+
+          <a
+            href="https://github.com/coding-jhj/Lease-Companion"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Lease-Companion 팀 저장소 보기
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <h2>페이지 제작 목적과 공개 범위</h2>
+
+    <p>
+      이 페이지는 나의 관심 분야와 프로젝트 경험을 소개하기 위해
+      제작했습니다.
+    </p>
+
+    <p>
+      개인정보 보호를 위해 집 주소, 전화번호, 학번, 개인 이메일과
+      비밀번호·토큰·API 키는 공개하지 않았습니다.
+    </p>
+  </footer>
+</body>
+</html>
