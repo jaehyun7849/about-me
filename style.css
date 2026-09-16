@@ -137,3 +137,45 @@ footer {
   color: #075985;
   font-weight: 700;
 }
+.interests {
+  margin: 20px 0;
+}
+
+.interests h2 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.interest-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.interest-list li {
+  padding: 8px 14px;
+  border: 1px solid #075985;
+  border-radius: 999px;
+  color: #075985;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+.hero-summary {
+  margin: 16px 0 20px;
+  padding: 16px 20px;
+  border-left: 4px solid #075985;
+  background: #ffffff;
+}
+
+.hero-summary p {
+  margin: 4px 0;
+}
+
+.hero-summary a {
+  color: #075985;
+  font-weight: 700;
+}
