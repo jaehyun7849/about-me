@@ -30,7 +30,7 @@ header {
 
 h1 {
   margin: 8px 0 16px;
-  font-size: clamp(2.3rem, 6vw, 4.5rem);
+  font-size: clamp(2.3rem, 5vw, 4rem);
   line-height: 1.15;
 }
 
@@ -121,4 +121,19 @@ footer {
     animation: none !important;
     transition: none !important;
   }
+}
+.hero-summary {
+  margin: 16px 0 20px;
+  padding: 16px 20px;
+  border-left: 4px solid #075985;
+  background: #ffffff;
+}
+
+.hero-summary p {
+  margin: 4px 0;
+}
+
+.hero-summary a {
+  color: #075985;
+  font-weight: 700;
 }
