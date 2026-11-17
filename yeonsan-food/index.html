@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>부산 연산동 · 연제구 맛집 리스트</title>
+<meta name="description" content="부산 연산동·연제구 맛집 20곳을 분류별로 한눈에. 국밥·돼지볶음·해산물 제외, 금요일 19시 기준 영업 상태 표시.">
+<style>
+  :root{
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --ink:#16181d;
+    --ink-2:#5b6270;
+    --ink-3:#8b929f;
+    --line:#e6e8ec;
+    --accent:#e8552d;
+    --accent-soft:#fdeee8;
+    --ok:#0a7d4f;
+    --ok-soft:#e6f5ee;
+    --warn:#a66500;
+    --warn-soft:#fdf2dd;
+    --na:#6b7280;
+    --na-soft:#eef0f3;
+    --bad:#b02525;
+    --bad-soft:#fbeaea;
+    --shadow:0 1px 2px rgba(16,18,24,.04), 0 8px 24px -12px rgba(16,18,24,.14);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#111317;
+      --card:#191c21;
+      --ink:#f2f4f7;
+      --ink-2:#b2b9c5;
+      --ink-3:#858d9b;
+      --line:#2a2e36;
+      --accent:#ff7247;
+      --accent-soft:#35211a;
+      --ok:#57cf94;
+      --ok-soft:#16301f;
+      --warn:#e8b45a;
+      --warn-soft:#332915;
+      --na:#9aa3b0;
+      --na-soft:#23272e;
+      --bad:#f08585;
+      --bad-soft:#33201f;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -16px rgba(0,0,0,.6);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased;
+    padding:0 0 40px;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  header{padding:28px 0 14px}
+  .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 8px}
+  h1{font-size:24px;line-height:1.3;margin:0 0 8px;letter-spacing:-.02em}
+  .sub{margin:0;color:var(--ink-2);font-size:13.5px}
+  .sub b{color:var(--ink);font-weight:600}
+  .filters{position:sticky;top:0;z-index:10;background:linear-gradient(var(--bg) 78%,transparent);padding:12px 0 10px;margin:0 0 4px}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink-2);
+    font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+    transition:.15s ease;white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--ink-3)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .switch{
+    display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:9px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-2);
+    user-select:none;box-shadow:var(--shadow);
+  }
+  .switch input{position:absolute;opacity:0;width:0;height:0}
+  .track{width:36px;height:21px;border-radius:999px;background:var(--line);position:relative;flex:0 0 auto;transition:.18s}
+  .track::after{content:"";position:absolute;top:2.5px;left:2.5px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:.18s}
+  .switch input:checked + .track{background:var(--accent)}
+  .switch input:checked + .track::after{transform:translateX(15px)}
+  .switch input:checked ~ .switch-label{color:var(--ink)}
+  .switch input:focus-visible + .track{outline:2px solid var(--accent);outline-offset:2px}
+  .count{font-size:12.5px;color:var(--ink-3);margin:6px 2px 14px}
+  .count b{color:var(--ink-2)}
+  section.cat{margin:0 0 22px}
+  h2{font-size:13px;font-weight:700;color:var(--ink-3);letter-spacing:.02em;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  h2 .num{color:var(--accent)}
+  .cards{display:grid;gap:10px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:15px 16px 14px;box-shadow:var(--shadow);
+  }
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .name{font-size:16.5px;font-weight:700;margin:0;letter-spacing:-.01em}
+  .badge{
+    flex:0 0 auto;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;
+    border:1px solid transparent;white-space:nowrap;
+  }
+  .badge.ok{color:var(--ok);background:var(--ok-soft)}
+  .badge.warn{color:var(--warn);background:var(--warn-soft)}
+  .badge.na{color:var(--na);background:var(--na-soft)}
+  .badge.bad{color:var(--bad);background:var(--bad-soft)}
+  .feat{margin:5px 0 0;color:var(--ink-2);font-size:13.5px}
+  .hours{margin:8px 0 0;font-size:12px;color:var(--ink-3)}
+  .hours b{color:var(--ink-2);font-weight:600}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:11px;border-top:1px dashed var(--line)}
+  .addr{font-size:12px;color:var(--ink-3);margin:0;line-height:1.45;min-width:0}
+  .map{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+    font-size:12.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);
+    padding:8px 12px;border-radius:10px;transition:.15s;
+  }
+  .map:hover{filter:brightness(.96)}
+  .map svg{width:13px;height:13px}
+  .empty{display:none;text-align:center;color:var(--ink-3);font-size:13.5px;padding:36px 0}
+  footer{margin-top:26px;border-top:1px solid var(--line);padding-top:16px;font-size:11.5px;color:var(--ink-3);line-height:1.7}
+  @media (min-width:560px){
+    h1{font-size:28px}
+    .cards{grid-template-columns:1fr 1fr}
+    .card{display:flex;flex-direction:column}
+    .card .foot{margin-top:auto}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Busan · Yeonsan-dong</p>
+    <h1>부산 연산동 · 연제구 맛집 리스트</h1>
+    <p class="sub">국밥 · 돼지볶음 · 해산물 제외 · <b>4개 분류 20곳</b></p>
+  </header>
+
+  <div class="filters">
+    <div class="chips" role="group" aria-label="분류 필터">
+      <button class="chip" data-cat="all" aria-pressed="true">전체</button>
+      <button class="chip" data-cat="meat" aria-pressed="false">고기·구이</button>
+      <button class="chip" data-cat="katsu" aria-pressed="false">돈카츠·라멘</button>
+      <button class="chip" data-cat="western" aria-pressed="false">양식·피자</button>
+      <button class="chip" data-cat="chinese" aria-pressed="false">중식·밀면·쌀국수</button>
+    </div>
+    <label class="switch" title="금요일 19시에 여유 있게 이용할 수 있는 곳만 봅니다">
+      <input type="checkbox" id="friToggle">
+      <span class="track" aria-hidden="true"></span>
+      <span class="switch-label">금요일 19시 추천만 보기</span>
+    </label>
+  </div>
+
+  <p class="count" id="count"></p>
+  <main id="list"></main>
+  <p class="empty" id="empty">조건에 맞는 가게가 없습니다.</p>
+
+  <footer>
+    영업시간은 2026년 11월 조회 기준이며, 매장 사정에 따라 달라질 수 있습니다.
+    방문 전 [지도 열기]에서 영업 여부를 한 번 더 확인하세요.
+    <br>금요일 19시 표시 · <span style="color:var(--ok);font-weight:700">여유</span> 19시 이후 1시간 30분 이상 영업 ·
+    <span style="color:var(--warn);font-weight:700">마감 빠름</span> 20시 전후 마감 ·
+    <span style="color:var(--na);font-weight:700">시간 미확인</span> 확인 필요 ·
+    <span style="color:var(--bad);font-weight:700">이용 불가</span> 19시에 이미 마감
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  {cat:"meat", catName:"고기 · 구이 · 양곱창", name:"손자한우로스구이", feat:"가성비 좋은 한우 로스구이",
+   status:"ok", hours:"영업 · 17:00~23:30, 22:30 라스트오더", addr:"부산 연제구 쌍미천로155번길 35-1",
+   map:"http://place.map.kakao.com/1813323381"},
+  {cat:"meat", catName:"고기 · 구이 · 양곱창", name:"맛고 본점", feat:"직원이 구워주는 이베리코·숯불닭갈비",
+   status:"ok", hours:"영업 · 12:00~02:00", addr:"부산 연제구 고분로13번길 9",
+   map:"http://place.map.kakao.com/587665582"},
+  {cat:"meat", catName:"고기 · 구이 · 양곱창", name:"박복순 쪽갈비", feat:"연산로터리 인기 쪽갈비 술안주",
+   status:"ok", hours:"영업 · 16:00~01:00", addr:"부산 연제구 고분로13번길 7",
+   map:"http://place.map.kakao.com/2074058365"},
+  {cat:"meat", catName:"고기 · 구이 · 양곱창", name:"동원숯불갈비", feat:"38년 된 골목 숯불돼지갈비 노포",
+   status:"ok", hours:"영업 · 12:00~22:00", addr:"부산 연제구 과정로276번길 9",
+   map:"http://place.map.kakao.com/8974303"},
+  {cat:"meat", catName:"고기 · 구이 · 양곱창", name:"로타리양곱창센타", feat:"이모님이 직접 구워주는 노포 양곱창 모둠",
+   status:"ok", hours:"영업 · 11:30~02:00", addr:"부산 연제구 반송로 13-7",
+   map:"http://place.map.kakao.com/23637257"},
+
+  {cat:"katsu", catName:"돈카츠 · 일식라멘", name:"광성", feat:"두툼한 등심·안심·리브로스 정식 (웨이팅 있음)",
+   status:"na", hours:"영업시간 사전 확인 필요", addr:"부산 연제구 과정로191번가길 62",
+   map:"http://place.map.kakao.com/1720103801"},
+  {cat:"katsu", catName:"돈카츠 · 일식라멘", name:"시청카츠", feat:"바삭한 히레·로스카츠",
+   status:"ok", hours:"영업 · 11:00~21:00", addr:"부산 연제구 중앙대로1043번길 34",
+   map:"https://maps.google.com/?cid=9890784119994616482&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA"},
+  {cat:"katsu", catName:"돈카츠 · 일식라멘", name:"서울왕돈까스", feat:"줄 서서 먹는 옛날 경양식 왕돈까스",
+   status:"na", hours:"영업시간 사전 확인 필요", addr:"부산 연제구 법원남로10번길 23-1",
+   map:"http://place.map.kakao.com/11561405"},
+  {cat:"katsu", catName:"돈카츠 · 일식라멘", name:"세마이", feat:"덜 짜고 진한 돈코츠 라멘·교자",
+   status:"bad", hours:"금요일 19:00 마감 · 이용 불가", addr:"부산 연제구 반송로 50-12",
+   map:"http://place.map.kakao.com/1592507216"},
+  {cat:"katsu", catName:"돈카츠 · 일식라멘", name:"코하루", feat:"숙주·차슈 넉넉한 하카타 돈코츠 라멘",
+   status:"ok", hours:"영업 · 17:00~21:00 (저녁)", addr:"부산 연제구 중앙대로1043번길 20",
+   map:"http://place.map.kakao.com/785291654"},
+
+  {cat:"western", catName:"양식 · 파스타 · 화덕피자", name:"온결", feat:"연산역 인근 깔끔한 파스타 전문",
+   status:"ok", hours:"영업 · 11:00~21:00", addr:"부산 연제구 월드컵대로 166",
+   map:"http://place.map.kakao.com/1049001899"},
+  {cat:"western", catName:"양식 · 파스타 · 화덕피자", name:"마조레", feat:"화덕피자·매콤 치킨크림파스타 맛집",
+   status:"ok", hours:"영업 · 11:30~21:00", addr:"부산 연제구 거제시장로11번길 21",
+   map:"http://place.map.kakao.com/21211730"},
+  {cat:"western", catName:"양식 · 파스타 · 화덕피자", name:"비스트로타마르", feat:"두더지피자·몰치킨 스테이크",
+   status:"ok", hours:"영업 · 17:00~21:20 (저녁)", addr:"부산 연제구 월드컵대로165번길 88",
+   map:"http://place.map.kakao.com/1136456799"},
+  {cat:"western", catName:"양식 · 파스타 · 화덕피자", name:"꼬미다 (Comida)", feat:"분위기 있는 양식 다이닝",
+   status:"ok", hours:"영업 · 17:00~22:00 (저녁)", addr:"부산 연제구 거제대로 275",
+   map:"http://place.map.kakao.com/1035416179"},
+  {cat:"western", catName:"양식 · 파스타 · 화덕피자", name:"예따뚜이", feat:"바질페스토·라구 파스타 (목~토만 영업)",
+   status:"warn", hours:"마감 빠름 · 20:00 마감", addr:"부산 연제구 연수로87번길 50",
+   map:"http://place.map.kakao.com/351490819"},
+
+  {cat:"chinese", catName:"중식 · 밀면 · 쌀국수", name:"그집짬뽕0927 연산본점", feat:"돌판볶음짜장·불향 짬뽕",
+   status:"warn", hours:"마감 빠름 · 20:30 마감", addr:"부산 연제구 고분로 47",
+   map:"http://place.map.kakao.com/1705230527"},
+  {cat:"chinese", catName:"중식 · 밀면 · 쌀국수", name:"칠보락", feat:"육즙 군만두·새우완즈 중식 노포",
+   status:"ok", hours:"영업 · 11:00~23:00", addr:"부산 연제구 쌍미천로 175-10",
+   map:"http://place.map.kakao.com/13280997"},
+  {cat:"chinese", catName:"중식 · 밀면 · 쌀국수", name:"용문각", feat:"교대역 오래된 중식당 (간짜장·옛날탕수육)",
+   status:"na", hours:"영업시간 사전 확인 필요", addr:"부산 연제구 거제천로 209",
+   map:"http://place.map.kakao.com/16406184"},
+  {cat:"chinese", catName:"중식 · 밀면 · 쌀국수", name:"국제밀면 본점", feat:"소 사골 육수·찢은 양지 고명 밀면",
+   status:"warn", hours:"마감 빠름 · 20:00 마감", addr:"부산 연제구 중앙대로1235번길 23-6",
+   map:"http://place.map.kakao.com/25041331"},
+  {cat:"chinese", catName:"중식 · 밀면 · 쌀국수", name:"훕", feat:"연탄불향 직화돼지 쌀국수",
+   status:"warn", hours:"마감 빠름 · 20:00 마감", addr:"부산 연제구 중앙대로1043번길 24",
+   map:"http://place.map.kakao.com/876830630"}
+];
+
+const BADGE = {
+  ok:   {cls:"ok",   label:"여유"},
+  warn: {cls:"warn", label:"마감 빠름"},
+  na:   {cls:"na",   label:"시간 미확인"},
+  bad:  {cls:"bad",  label:"이용 불가"}
+};
+const CATS = [
+  {key:"meat",    label:"고기 · 구이 · 양곱창"},
+  {key:"katsu",   label:"돈카츠 · 일식라멘"},
+  {key:"western", label:"양식 · 파스타 · 화덕피자"},
+  {key:"chinese", label:"중식 · 밀면 · 쌀국수"}
+];
+
+const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11a7 7 0 1 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>';
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let curCat = "all";
+let friOnly = false;
+
+function render(){
+  const list = document.getElementById("list");
+  let html = "";
+  let shown = 0;
+  let total = 0;
+  CATS.forEach((c, i) => {
+    if (curCat !== "all" && curCat !== c.key) return;
+    const items = DATA.filter(d => d.cat === c.key && (!friOnly || d.status === "ok"));
+    if (!items.length) return;
+    total += items.length;
+    html += '<section class="cat"><h2><span class="num">0' + (i+1) + '</span>' + esc(c.label) +
+            ' <span style="color:var(--ink-3);font-weight:600">' + items.length + '곳</span></h2><div class="cards">';
+    items.forEach(d => {
+      const b = BADGE[d.status];
+      shown++;
+      html += '<article class="card">' +
+        '<div class="card-top"><h3 class="name">' + esc(d.name) + '</h3>' +
+        '<span class="badge ' + b.cls + '">' + b.label + '</span></div>' +
+        '<p class="feat">' + esc(d.feat) + '</p>' +
+        '<p class="hours"><b>금요일 19시</b> · ' + esc(d.hours) + '</p>' +
+        '<div class="foot"><p class="addr">' + esc(d.addr) + '</p>' +
+        '<a class="map" href="' + esc(d.map) + '" target="_blank" rel="noopener noreferrer">' + pin + '지도 열기</a>' +
+        '</div></article>';
+    });
+    html += '</div></section>';
+  });
+  list.innerHTML = html;
+  document.getElementById("count").innerHTML =
+    '<b>' + total + '곳</b> 표시 중' + (total !== 20 ? ' · 전체 20곳 중' : '');
+  document.getElementById("empty").style.display = total ? "none" : "block";
+}
+
+document.querySelectorAll(".chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    curCat = btn.dataset.cat;
+    document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    render();
+  });
+});
+document.getElementById("friToggle").addEventListener("change", e => {
+  friOnly = e.target.checked;
+  render();
+});
+render();
+</script>
+</body>
+</html>
